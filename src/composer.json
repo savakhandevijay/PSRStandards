@@ -1,0 +1,17 @@
+{
+    "name": "vijaysavakhande/coding-standards",
+    "description": "Maintain php coding standard",
+    "require": {
+        "friendsofphp/php-cs-fixer": "^3.62"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "libs/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vijay Savakhande"
+        }
+    ]
+}

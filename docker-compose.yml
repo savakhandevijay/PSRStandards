@@ -1,0 +1,21 @@
+services:
+    php:
+        build:
+            context: ./configs
+            dockerfile: php.dockerfile
+        working_dir: /var/www
+        expose:
+            - 9000
+            - 9003
+        volumes:
+            - ./src:/var/www
+            - ./logs:/var/log
+    nginx:
+        image: nginx:stable-alpine3.19
+        working_dir: /etc/nginx/conf.d
+        volumes:
+            - ./logs:/var/log/
+            - ./configs/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - ${HTTP_PORT}:80
+        
