@@ -3,8 +3,8 @@
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
 $testing = '111';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-	if (empty($_POST["name"])) {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+	if(empty($_POST["name"])) {
 		$nameErr = "Name is required";
 	} else {
 		$name = test_input($_POST["name"]);
