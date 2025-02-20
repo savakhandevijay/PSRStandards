@@ -1,0 +1,40 @@
+services:
+    php:
+        image: php-fpm82:latest
+        container_name: psrStandardValidation
+        working_dir: /var/www
+        volumes:
+            - ./src/:/var/www
+            - ./log/php:/var/log/
+            - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+        environment:
+            - SMTP_HOST=${SMTP_HOST}
+            - SMTP_PORT=${SMTP_PORT}
+        expose:
+            - 9003
+            - 9000
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        networks:
+            - cex
+    nginx:
+        image: nginx:staging
+        container_name: webserver
+        working_dir: /etc/nginx/conf.d
+        depends_on:
+            - php
+        volumes:
+            - ./log/nginx:/var/log/nginx
+            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - ${APP_HTTP_PORT}:80
+        expose:
+            - 80
+        restart: always  
+        networks:
+            - cex
+networks:
+    cex:
+        driver: bridge
+        name: cex
+        attachable: true

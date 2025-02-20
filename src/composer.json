@@ -1,0 +1,33 @@
+{
+    "name": "cex/psr_standards",
+    "description": "Validate and fix PHP PSR standards",
+    "type": "composer-plugin",
+    "require": {
+        "friendsofphp/php-cs-fixer": "^3.68",
+        "google/apiclient": "^2.18"
+    },
+    "config": {
+        "process-timeout": 600
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "CustomFixers\\": "Apps/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vijay Savakhande",
+            "email": "savakhande.vijay@gmail.com"
+        }
+    ],
+    "scripts": {
+        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
+    },
+    "extra": {
+        "google/apiclient-services": [
+            "Drive",
+            "YouTube"
+        ]
+    }
+}
